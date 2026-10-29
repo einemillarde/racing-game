@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://d4kds6bgv8qfr"]
+
+[ext_resource type="PackedScene" uid="uid://cwu2gleupky0x" path="res://assets/blender/track.blend" id="1_r010s"]
+[ext_resource type="Texture2D" uid="uid://bhli2qa8oucdl" path="res://assets/pngs/road_texture.png" id="2_2w62r"]
+[ext_resource type="Shader" uid="uid://dx8snq3n5p1mf" path="res://shaders/track_3d.gdshader" id="3_2w62r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gpa1j"]
+albedo_texture = ExtResource("2_2w62r")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2w62r"]
+subdivide_width = 50
+subdivide_depth = 50
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2w62r"]
+noise_type = 5
+frequency = 0.0829
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gpa1j"]
+noise = SubResource("FastNoiseLite_2w62r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpa1j"]
+render_priority = 0
+shader = ExtResource("3_2w62r")
+shader_parameter/noise = SubResource("NoiseTexture2D_gpa1j")
+
+[node name="Track" unique_id=510028569 instance=ExtResource("1_r010s")]
+
+[node name="Plane" parent="." index="1" unique_id=1469196098]
+transform = Transform3D(-8.742278e-07, 20, 0, -20, -8.742278e-07, 0, 0, 0, 20, -11.952972, 0.01, -57.17282)
+surface_material_override/0 = SubResource("StandardMaterial3D_gpa1j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=1943754849]
+transform = Transform3D(504.44165, 0, 0, 0, 15, 0, 0, 0, 482.61224, 0, 0, 0)
+mesh = SubResource("PlaneMesh_2w62r")
+surface_material_override/0 = SubResource("ShaderMaterial_gpa1j")

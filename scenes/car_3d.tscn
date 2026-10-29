@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cvgnvgxc4xbcd"]
+
+[ext_resource type="PackedScene" uid="uid://kxluc1vltrlb" path="res://assets/blender/car.blend" id="1_2lfai"]
+[ext_resource type="Script" uid="uid://ddi7ybjgqrxuu" path="res://scripts/car_3d.gd" id="2_vbeqj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbeqj"]
+shading_mode = 0
+specular_mode = 2
+albedo_color = Color(0.16078432, 0.16078432, 0.16078432, 0.53333336)
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_0ao8p"]
+
+[node name="Car" unique_id=449803068 instance=ExtResource("1_2lfai")]
+script = ExtResource("2_vbeqj")
+
+[node name="f1-car-low-poly" parent="." index="0" unique_id=896697322]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." index="1" unique_id=1250335547]
+transform = Transform3D(-1, 0, -8.742277e-08, -4.0698563e-08, 0.88502824, 0.46553728, 7.7371624e-08, 0.46553728, -0.88502824, 0, 2.8965216, -3.2849255)
+current = true
+
+[node name="TyreTracks" type="MeshInstance3D" parent="." index="2" unique_id=2133354325]
+material_override = SubResource("StandardMaterial3D_vbeqj")
+mesh = SubResource("ImmediateMesh_0ao8p")
